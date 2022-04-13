@@ -188,8 +188,9 @@ function IndividualGate({
    * @param {string} gateId to copy
    */
   const copyInvite = (gateId: string) => {
+    const domain = process.env.NEXT_PUBLIC_URL;
     // Copy to clipboard
-    navigator.clipboard.writeText(`https://gaterepo.com/repo/join/${gateId}`);
+    navigator.clipboard.writeText(`${domain}/repo/join/${gateId}`);
 
     // Update button
     setCopyText("Copied!");
@@ -245,6 +246,11 @@ function IndividualGate({
             #{formatNumber(gate.blockNumber)}
           </a>
         </p>
+        {gate.readOnly ? (
+          <p>
+            <strong>Permission:</strong> Read-only
+          </p>
+        ) : null}
       </div>
 
       {/* Actions */}
